@@ -1,65 +1,26 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
-
+const Home = () => {
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3>
-                <Link to={node.fields.slug}>{title}</Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
+    <Layout>
+      <SEO title="Home" />
+      <h1>
+        This is the diary of Bilbo Baggins, the Hobbit from the Shire. This
+        includes the epic adventures of the brave Hobbit throughout the length
+        and breadth of the Middle Earth. Written and updated exclusively by
+        Bilbo himself on a weekly basis.
+      </h1>
+      <h3 style={{ color: "#808080" }}>
+        A word of caution for the readers: Do not seek these adventures yourself
+        as these might lead to paths of peril and dungeons of doom. Beware that
+        the middle earth is filled with dark secrets which can destroy the most
+        noble of beings.
+      </h3>
     </Layout>
   )
 }
 
-export default BlogIndex
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
-        }
-      }
-    }
-  }
-`
+export default Home
