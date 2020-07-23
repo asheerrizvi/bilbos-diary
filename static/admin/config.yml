@@ -1,6 +1,6 @@
 backend:
   name: github
-  branch: asheerrizvi/bilbos-diary
+  repo: asheerrizvi/bilbos-diary
 
 media_folder: content/assets
 public_folder: ../assets
